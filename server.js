@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/FlattenedShovel", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/mongoHeadlines", { useNewUrlParser: true });
 
 // Routes
 
@@ -52,6 +52,14 @@ app.get("/scrape", function(req, res) {
         .children("h3.lister-item-header")
         .children("a")
         .attr("href");
+      result.rating = $(this)
+        .children("div.ratings-bar")
+        .children("div.ratings-imdb-rating")
+        .attr("data-value")
+      result.summary = $(this)
+        .children("div.ratings-bar")
+        .children("p.text-muted")
+        .text();
 
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
