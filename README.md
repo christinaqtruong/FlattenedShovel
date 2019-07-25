@@ -11,6 +11,7 @@ Users are able to leave comments on the articles displayed and revisit them late
 
 
 1. It utilizes the following npm packages and is deployed on Heroku at: 
+https://flattenedshovel.herokuapp.com/
 
    1. express
 
