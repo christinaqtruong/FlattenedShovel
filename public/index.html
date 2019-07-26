@@ -1,46 +1,75 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Flattened Shovel</title>
-    <style>
-      #articles {
-        margin: 0 auto;
-        text-align: center;
-      }
-      #notes {
-        float: right;
-        width: 30%;
-      }
-      textarea, input {
-        /* display: block; */
-        width: 100%;
-        background-color: #FCF5C7;
-      }
-      input {
-        height: 36px;
-        font-size: 24px;
-      }
-      textarea {
-        height: 200px;
-        font-size: 18px;
-      }
-      h1, h2{
-        margin: 0 auto;
-        text-align: center;
-        font-family: 'Times New Roman', Times, serif;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="wrapper">
-      <h1>Scraping With a Flattened Shovel</h1>
-      <h2>It's not pretty, but it works. Sort of.</h2>
-      <div id="articles"></div>
-      <div id="notes"></div>
-      <a href="/scrape"> <button>Scrape Documentaries</button></a>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="app.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Flattened Shovel</title>
+  <style>
+    #articles {
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    #notes {
+      float: right;
+      width: 30%;
+    }
+
+    textarea,
+    input {
+      /* display: block; */
+      width: 100%;
+      background-color: #FCF5C7;
+    }
+
+    input {
+      height: 36px;
+      font-size: 24px;
+    }
+
+    textarea {
+      height: 200px;
+      font-size: 18px;
+    }
+
+    h1,
+    h2 {
+      margin: 0 auto;
+      text-align: center;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    button {
+      background-color: cadetblue;
+      border-color: cadetblue;
+      margin: 10px;
+    }
+
+    .button-holder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    body{
+      margin: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Scraping With a Flattened Shovel</h1>
+  <h2>It's not pretty, but it works. Sort of.</h2>
+
+  <div class="button-holder">
+    <a href="/scrape"> <button>Scrape Documentaries</button></a>
+  </div>
+
+  <div id="articles"></div>
+  <div id="notes"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
 </html>
