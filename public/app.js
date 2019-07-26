@@ -1,15 +1,12 @@
-// Grab the articles as a json
 $.getJSON("/articles", function(data) {
-    // For each one
     for (var i = 0; i < data.length; i++) {
-      // Display the apropos information on the page
-      $("#articles").append("<p data-id='" + data[i]._id + "'>" + "Title: " + data[i].title + "<br />" + "Link: " + data[i].link +"<br />" + "Rating: " + data[i].rating +"<br />" + "Summary: " + data[i].summary + "</p>");
+      $("#articles").append("<p data-id='" + data[i]._id + "'>" + "Title: " + data[i].title + "<br />" + "Link: https://www.imdb.com/" + data[i].link +"<br />" + "Rating: " + data[i].rating +"<br />" + "Summary: " + data[i].summary + "</p> <button class='create-note' data-id=" + data[i]._id + ">Create A Note</button>");
     }
   });
   
   
   // Whenever someone clicks a p tag
-  $(document).on("click", "p", function() {
+  $(document).on("click", ".create-note", function() {
     // Empty the notes from the note section
     $("#notes").empty();
     // Save the id from the p tag
@@ -60,10 +57,12 @@ $.getJSON("/articles", function(data) {
     })
       // With that done
       .then(function(data) {
+        
         // Log the response
         console.log(data);
         // Empty the notes section
         $("#notes").empty();
+        $(".finished-notes").text("Note title: " + data.title + "Note: " + data.body);
       });
   
     // Also, remove the values entered in the input and textarea for note entry
@@ -71,3 +70,30 @@ $.getJSON("/articles", function(data) {
     $("#bodyinput").val("");
   });
   
+  $(document).on("click", ".delete", function() {
+    // Save the p tag that encloses the button
+    var selected = $(this).attr("data-id");
+    // Make an AJAX GET request to delete the specific note
+    // this uses the data-id of the p-tag, which is linked to the specific note
+    $.ajax({
+      type: "GET",
+      url: "/articles/" + selected,
+  
+      // On successful call
+      success: function(response) {
+        // Remove the p-tag from the DOM
+        selected.remove();
+        // Clear the note and title inputs
+        $("#note").val("");
+        $("#title").val("");
+      }
+    })
+    .then(function() {
+      // Empty the notes section
+      $(".finished-notes").empty();
+    });
+
+  // Also, remove the values entered in the input and textarea for note entry
+  $("#titleinput").val("");
+  $("#bodyinput").val("");
+  });
